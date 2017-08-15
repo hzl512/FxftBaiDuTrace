@@ -34,11 +34,15 @@ public class TraceReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         mContext=context;
-        LogUtil.v(TAG,"TraceReceiver onReceive");
-        boolean isInit=intent.getBooleanExtra("isInit",false);
-        if (isInit){
-            LogUtil.v(TAG," TraceReceiver deviceID： "+intent.getStringExtra("deviceID"));
-            location(intent.getStringExtra("deviceID"));
+        try {
+            LogUtil.v(TAG,"TraceReceiver onReceive");
+            boolean isInit=intent.getBooleanExtra("isInit",false);
+            if (isInit){
+                LogUtil.v(TAG," TraceReceiver deviceID： "+intent.getStringExtra("deviceID"));
+                location(intent.getStringExtra("deviceID"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

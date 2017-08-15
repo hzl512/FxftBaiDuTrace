@@ -18,14 +18,18 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //启动百度鹰眼
-                sendBroadcast(new Intent("Fxft_Cmt_Mutual").putExtra("Action_Type", 1));
-                LogUtil.v(TAG,"MyService onCreate");
-            }
-        }, 5 * 1000);
+        try {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //启动百度鹰眼
+                    sendBroadcast(new Intent("Fxft_Cmt_Mutual").putExtra("Action_Type", 1));
+                    LogUtil.v(TAG,"MyService onCreate");
+                }
+            }, 5 * 1000);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         improvePriority();
     }
 
